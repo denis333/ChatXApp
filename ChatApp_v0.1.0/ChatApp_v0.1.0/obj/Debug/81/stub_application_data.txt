@@ -1,0 +1,2 @@
+android.app.Application
+ChatApp_v0.x_1.x_0.ChatApp_v0.x_1.x_0

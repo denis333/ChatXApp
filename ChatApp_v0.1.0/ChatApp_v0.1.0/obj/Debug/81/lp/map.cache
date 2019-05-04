@@ -1,3 +1,4 @@
+DnsClient
 DotNetty.Buffers
 DotNetty.Codecs
 DotNetty.Common
@@ -5,13 +6,16 @@ DotNetty.Handlers
 DotNetty.Transport
 Matrix
 Matrix.Extensions
+Matrix.Srv
 Microsoft.Extensions.DependencyInjection.Abstractions
 Microsoft.Extensions.Logging.Abstractions
 Microsoft.Extensions.Logging
+System.Buffers
 System.Collections.Immutable
 System.Reactive
 System.Runtime.CompilerServices.Unsafe
 System.Runtime
+System.Threading.Tasks.Extensions
 Xamarin.Android.Arch.Core.Common
 Xamarin.Android.Arch.Lifecycle.Common
 Xamarin.Android.Arch.Lifecycle.Runtime
@@ -27,6 +31,7 @@ Xamarin.Android.Support.Transition
 Xamarin.Android.Support.v7.AppCompat
 Xamarin.Android.Support.v7.RecyclerView
 Xamarin.Android.Support.Vector.Drawable
+netstandard
 System.Resources.ResourceManager
 System.Text.Encoding
 System.Threading.Tasks
@@ -42,6 +47,5 @@ System.Console
 System.IO.FileSystem
 System.Net.NameResolution
 System.Reflection.Extensions
-netstandard
 System.ComponentModel
 System.Runtime.InteropServices.WindowsRuntime

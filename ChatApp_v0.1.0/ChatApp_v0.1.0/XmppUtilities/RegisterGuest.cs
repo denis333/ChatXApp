@@ -5,18 +5,22 @@ using Matrix.Xmpp.XData;
 
 namespace ChatApp_v0._1._0.XmppUtilities
 {
-    // TODO
     public class RegisterGuest : IRegister
     {
         private XmppClient guestClient;
-        public RegisterGuest()
+        public RegisterGuest(string username)
         {
             guestClient = new XmppClient
             {
-                Username = "guest1",    // TODO: this name shall be dynamic
+                Username = username,
                 Password = "1111",
-                XmppDomain = "myDomain@example.com"
+                XmppDomain = "defaultDomain.com"
             };
+        }
+
+        public RegisterGuest(XmppClient xmppClient)
+        {
+            guestClient = xmppClient;
         }
 
         public bool RegisterNewAccount => true;

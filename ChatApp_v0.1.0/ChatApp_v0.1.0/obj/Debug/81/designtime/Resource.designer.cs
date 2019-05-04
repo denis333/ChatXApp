@@ -2558,6 +2558,9 @@ namespace ChatApp_v0._1._0
 			// aapt resource value: 0x7F0C004F
 			public const int parent_matrix = 2131492943;
 			
+			// aapt resource value: 0x7F010007
+			public const int pbWaitAction = 2130771975;
+			
 			// aapt resource value: 0x7F0C0050
 			public const int pin = 2131492944;
 			
