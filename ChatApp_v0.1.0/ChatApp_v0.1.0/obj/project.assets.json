@@ -480,11 +480,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\denisworkpc\\source\\repos\\ChatApp_v0.1.0\\ChatApp_v0.1.0\\ChatApp_v0.1.0.csproj",
+      "projectUniqueName": "C:\\Users\\DenisWorkPC\\source\\repos\\chatappprototype\\ChatApp_v0.1.0\\ChatApp_v0.1.0\\ChatApp_v0.1.0.csproj",
       "projectName": "ChatApp_v0.1.0",
-      "projectPath": "c:\\users\\denisworkpc\\source\\repos\\ChatApp_v0.1.0\\ChatApp_v0.1.0\\ChatApp_v0.1.0.csproj",
+      "projectPath": "C:\\Users\\DenisWorkPC\\source\\repos\\chatappprototype\\ChatApp_v0.1.0\\ChatApp_v0.1.0\\ChatApp_v0.1.0.csproj",
       "packagesPath": "C:\\Users\\DenisWorkPC\\.nuget\\packages\\",
-      "outputPath": "c:\\users\\denisworkpc\\source\\repos\\ChatApp_v0.1.0\\ChatApp_v0.1.0\\obj\\",
+      "outputPath": "C:\\Users\\DenisWorkPC\\source\\repos\\chatappprototype\\ChatApp_v0.1.0\\ChatApp_v0.1.0\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
