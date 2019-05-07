@@ -12,4 +12,7 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMatriX_Xamarin_Android Condition=" '$(PkgMatriX_Xamarin_Android)' == '' ">C:\Users\DenisWorkPC\.nuget\packages\matrix.xamarin.android\2.1.0.3</PkgMatriX_Xamarin_Android>
+  </PropertyGroup>
 </Project>

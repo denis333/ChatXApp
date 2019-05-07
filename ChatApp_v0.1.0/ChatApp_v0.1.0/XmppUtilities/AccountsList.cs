@@ -1,5 +1,4 @@
 ﻿using Matrix;
-using Matrix.Extensions.Client.Roster;
 using Matrix.Xml;
 using Matrix.Xmpp.Client;
 using Matrix.Xmpp.Roster;
@@ -17,12 +16,12 @@ namespace ChatApp_v0._1._0.XmppUtilities
         }
         
         // TODO: to implement
-        public async Task<Iq> GetAccountsList()
+       /* public async Task<Iq> GetAccountsList()
         {
             // TODO: do checks if client is connected to server?
             var roster = await xmppClient.RequestRosterAsync();
             return roster;
-            /*
+            
             // get all rosterItems (list of contacts)
             var rosterItems
                 = roster
@@ -38,7 +37,7 @@ namespace ChatApp_v0._1._0.XmppUtilities
 
                 // var contact = mapper.Map<Contact>(ri);
                 // contacts.AddOrReplace(contact, c => c.Jid == contact.Jid);
-            }*/
-        }
+            }
+        }*/
     }
 }

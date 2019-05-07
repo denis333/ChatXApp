@@ -26,6 +26,7 @@ namespace ChatApp_v0._1._0
 		
 		public static void UpdateIdValues()
 		{
+			global::Matrix.Resource.String.ApplicationName = global::ChatApp_v0._1._0.Resource.String.ApplicationName;
 		}
 		
 		public partial class Animation
@@ -3125,6 +3126,9 @@ namespace ChatApp_v0._1._0
 			
 			// aapt resource value: 0x7F15001E
 			public const int appbar_scrolling_view_behavior = 2132082718;
+			
+			// aapt resource value: 0x7F050004
+			public const int ApplicationName = 2131034116;
 			
 			// aapt resource value: 0x7F050002
 			public const int app_name = 2131034114;

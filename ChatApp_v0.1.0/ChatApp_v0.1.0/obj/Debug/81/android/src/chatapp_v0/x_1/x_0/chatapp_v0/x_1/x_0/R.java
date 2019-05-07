@@ -3210,6 +3210,7 @@ containing a value of this type.
         public static final int ic_launcher_round=0x7f030002;
     }
     public static final class string {
+        public static final int ApplicationName=0x7f090027;
         public static final int abc_action_bar_home_description=0x7f090000;
         public static final int abc_action_bar_up_description=0x7f090001;
         public static final int abc_action_menu_overflow_description=0x7f090002;
@@ -3239,8 +3240,8 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with=0x7f09000e;
         public static final int abc_shareactionprovider_share_with_application=0x7f09000f;
         public static final int abc_toolbar_collapse_description=0x7f090010;
-        public static final int action_settings=0x7f090028;
-        public static final int app_name=0x7f090027;
+        public static final int action_settings=0x7f090029;
+        public static final int app_name=0x7f090028;
         public static final int appbar_scrolling_view_behavior=0x7f09001e;
         public static final int bottom_sheet_behavior=0x7f09001f;
         public static final int character_counter_pattern=0x7f090020;
