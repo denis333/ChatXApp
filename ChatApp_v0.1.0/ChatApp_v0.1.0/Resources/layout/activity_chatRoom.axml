@@ -7,7 +7,7 @@
 		android:gravity = "center"
 		android:orientation="horizontal"
 		android:layout_width="match_parent"
-		android:layout_height="320dp">
+		android:layout_height="450dp">
 		<ListView
 			android:minWidth="25px"
 			android:minHeight="25px"
@@ -21,20 +21,23 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 		<EditText
-			android:hint = "Type message"
-			android:layout_width="226.0dp"
+			android:hint="Type message"
+			android:layout_width="280.0dp"
+			android:layout_marginLeft ="2dp"
 			android:layout_height="wrap_content"
 			android:minWidth="25px"
 			android:minHeight="25px"
 			android:id="@+id/etMsgToSend"
 			android:layout_marginRight="0.0dp" />
-		<Button 
-			android:text ="Send"
+		<Button
+			android:text="Send"
+			android:layout_marginLeft="1.0dp"
+			android:layout_marginRight="2.0dp"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:minWidth="25px"
-			android:minHeight="25px"
-			android:id="@+id/btnMsgToSend"/>
+			android:minWidth="25.0dp"
+			android:minHeight="25.0dp"
+			android:id="@+id/btnMsgToSend" />
 	</LinearLayout>
 
 </LinearLayout>

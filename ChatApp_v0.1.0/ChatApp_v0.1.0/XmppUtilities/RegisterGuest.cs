@@ -1,41 +1,64 @@
-﻿using System.Threading.Tasks;
-using Matrix;
+﻿using System;
+using Matrix.Xmpp.Client;
 using Matrix.Xmpp.Register;
-using Matrix.Xmpp.Stream.Features;
-using Matrix.Xmpp.XData;
 
 namespace ChatApp_v0._1._0.XmppUtilities
-{   // TODO
-    //public class RegisterGuest : Register
-    //{
-    //    private XmppClient guestClient;
-    //    public RegisterGuest(string username)
-    //    {
-    //        guestClient = new XmppClient
-    //        {
-    //            Username = username,
-    //            Password = "1111",
-    //            XmppDomain = "defaultDomain.com"
-    //        };
-    //    }
+{
+    public class RegisterGuest
+    {
+        private XmppClient guestClient;
 
-    //    public RegisterGuest(XmppClient xmppClient)
-    //    {
-    //        guestClient = xmppClient;
-    //    }
+        public RegisterGuest(string username)
+        {
+            guestClient = new XmppClient
+            {
+                Username = username,
+                Password = XmppConfiguration.DefaultGuestPassword,
+                XmppDomain = XmppConfiguration.DefaultDomain
+            };
 
-    //    public bool RegisterNewAccount => true;
+            Initialize();
+        }
 
-    //    public async Task<Register> RegisterAsync(Register register)
-    //    {
-    //        return await Task<Register>.Run(() =>
-    //        {
-    //            register.RemoveAll<Data>();
-    //            register.Username = guestClient.Username;
-    //            register.Password = guestClient.Password;
+        public RegisterGuest(XmppClient xmppClient)
+        {
+            if (xmppClient == null) throw new NullReferenceException();
 
-    //            return register;
-    //        });
-    //    }
-    //}
+            guestClient = xmppClient;
+
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            guestClient.OnRegister += new EventHandler<Matrix.EventArgs>(xmppClient_OnRegister);
+            guestClient.OnRegisterInformation += new EventHandler<RegisterEventArgs>(xmppClient_OnRegisterInformation);
+            guestClient.OnRegisterError += new EventHandler<IqEventArgs>(xmppClient_OnRegisterError);
+
+            guestClient.RegisterNewAccount = true;
+        }
+
+        #region RegistrationEvents
+        private void xmppClient_OnRegisterInformation(object sender, RegisterEventArgs e)
+        {
+            e.Register.RemoveAll<Matrix.Xmpp.XData.Data>();
+
+            e.Register.Username = guestClient.Username;
+            e.Register.Password = guestClient.Password;
+        }
+
+        private void xmppClient_OnRegister(object sender, EventArgs e)
+        {
+            // registration was successful
+            // TODO
+        }
+
+        private void xmppClient_OnRegisterError(object sender, IqEventArgs e)
+        {
+            // registration failed.
+            // TODO
+            guestClient.Close();
+        }
+        #endregion
+    }
 }
