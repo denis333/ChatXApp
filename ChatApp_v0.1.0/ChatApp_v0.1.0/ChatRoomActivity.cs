@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Matrix.Xmpp;
 using Matrix.Xmpp.Client;
@@ -17,6 +10,8 @@ namespace ChatApp_v0._1._0
     [Activity(Label = "ChatRoomActivity")]
     public class ChatRoomActivity : Activity
     {
+        ChatHandler chatHandler;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -28,7 +23,7 @@ namespace ChatApp_v0._1._0
             Button btnSendMsg = FindViewById<Button>(Resource.Id.btnMsgToSend);
             ListView lvChatHistory = FindViewById<ListView>(Resource.Id.lvChatHistory);
 
-            var chat = new ChatHandler(this, lvChatHistory);
+            chatHandler = new ChatHandler(this, lvChatHistory);
 
             // Binding receive messages handling
             if (MainActivity.xmppClient != null)
@@ -38,9 +33,6 @@ namespace ChatApp_v0._1._0
 
             btnSendMsg.Click += (sender, e) => 
             {
-                // TODO 
-                Toast.MakeText(this.ApplicationContext, "Sending the message", ToastLength.Short).Show();
-
                 var msg = new Matrix.Xmpp.Client.Message
                 {
                     Type = MessageType.Chat,
@@ -58,6 +50,7 @@ namespace ChatApp_v0._1._0
                 try
                 {
                     MainActivity.xmppClient.Send(msg);
+                    chatHandler.AddMessage("You: " + msg.Body);
                 }
                 catch(Exception exception)
                 {
@@ -69,14 +62,7 @@ namespace ChatApp_v0._1._0
         #region XmppEvents
         private void XmppClientMessageReceived(object sender, MessageEventArgs e)
         {
-            //Debug.WriteLine(string.Format("OnMessage from {0}", e.Message.From));
-            //Debug.WriteLine(string.Format("Body {0}", e.Message.Body));
-            //Debug.WriteLine(string.Format("Type {0}", e.Message.Type));
-
-            Application.SynchronizationContext.Post(_ =>
-            {
-                Toast.MakeText(this.ApplicationContext, "OnMessage from" + e.Message.From + " : " + e.Message.Body, ToastLength.Short).Show();
-            }, null);
+            chatHandler?.AddMessage("From: " + e.Message.From + " " + e.Message.Body);
         }
         #endregion
     }

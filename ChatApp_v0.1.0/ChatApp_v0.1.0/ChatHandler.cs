@@ -14,34 +14,30 @@ namespace ChatApp_v0._1._0
     // TODO
     public class ChatHandler
     {
-        public List<string> MessagesHistory { get; private set; } = new List<string>();
+        private ArrayAdapter<string> listAdapter;
 
-        private ArrayAdapter listAdapter;
         private ListView listView;
+        private Context context;
 
         public ChatHandler(Context ctxt, ListView lv)
         {
             listView = lv;
-            listAdapter = new ArrayAdapter(ctxt, Resource.Layout.list_item, MessagesHistory);
+            context = ctxt;
 
             Initialize();
         }
 
         private void Initialize()
         {
-            listView.SetAdapter(listAdapter);
+            listAdapter = new ArrayAdapter<string>(context, Resource.Layout.list_item);
+            listView.Adapter = listAdapter;
 
-            MessagesHistory.Add("You have entered in the anonymous chat room");
-            MessagesHistory.Add("message x");
-            MessagesHistory.Add("message y");
-            MessagesHistory.Add("message z");
-            MessagesHistory.Add("message u");
+            listAdapter.AddAll("Welcome");
         }
 
-        public void AddMessage(string name, string msg)
+        public void AddMessage(string msg)
         {
-            // TODO
-            //listView.AddView()
+            listAdapter.Add(msg);
         }
     }
 }
