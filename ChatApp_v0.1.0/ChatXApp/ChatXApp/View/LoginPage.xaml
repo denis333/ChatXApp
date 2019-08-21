@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:ChatXApp.ViewModels"
+             xmlns:customCtrl="clr-namespace:ChatXApp.View.CustomControls"
+             mc:Ignorable="d"
+             x:Class="ChatXApp.LoginPage">
+
+    <ContentPage.BindingContext>
+        <local:LoginPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <AbsoluteLayout
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+            <StackLayout 
+                Orientation="Vertical"
+                VerticalOptions="Center">
+                <customCtrl:ExtendedEditorControl 
+                    Margin="0, 40, 0, 0"
+                    HasRoundedCorner="True"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center" 
+                    WidthRequest="160"
+                    FontSize="20"
+                    Text="{Binding NickName}"
+                    Placeholder="NickName">
+                    <customCtrl:ExtendedEditorControl.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" Value="SOURCECODEPRO-SEMIBOLD.TTF#Source Code Pro SemiBold"/>
+                        </OnPlatform>
+                    </customCtrl:ExtendedEditorControl.FontFamily>
+                </customCtrl:ExtendedEditorControl>
+                <Frame 
+                    HasShadow="False" 
+                    BackgroundColor="Transparent"
+                    HeightRequest="35">
+                    <Button       
+                        BackgroundColor="#0097A7"
+                        WidthRequest="160"
+                        HeightRequest="35"
+                        TextColor="#FFFFFF"
+                        Command="{Binding EnterCommand}"
+                        Text="Chat Room Enter"         
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center">
+                        <Button.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android" Value="SOURCESANSPRO-SEMIBOLD.TTF#Source Sans Pro SemiBold"/>
+                            </OnPlatform>
+                        </Button.FontFamily>
+                    </Button>
+                </Frame>
+            </StackLayout>
+            <ActivityIndicator
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0.5, 0.25, 0.25, 0.25"
+                IsRunning="{Binding IsBusy}"   
+                IsVisible="True"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

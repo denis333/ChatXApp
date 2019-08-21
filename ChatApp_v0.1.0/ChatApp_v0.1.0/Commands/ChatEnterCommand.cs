@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Input;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace ChatApp_v0._1._0.ViewModel
-{   // TODO; redundancy, extract in basic commnd
+{   // TODO; redundancy, extract in a basic commnd
     public class ChatEnterCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
