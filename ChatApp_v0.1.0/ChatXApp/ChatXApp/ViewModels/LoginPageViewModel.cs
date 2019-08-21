@@ -1,6 +1,6 @@
 ﻿// If you have an XMPP server, you can
-// (1) - use the application with the xmpp client wired up(comment line #5 '#define APPCONFIG_DEMO'),
-// (2) - otherwise, use the demo mode (comment line #6 '#define APPCONFIG_XMPPSERVER') ''this is the default mode''
+// (1) - use the application with the xmpp client wired up(comment line #5 '#define APPCONFIG_XMPPSERVER'),
+// (2) - otherwise, use the demo mode (comment line #6 '#define APPCONFIG_DEMO') ''this is the default mode''
 
 //#define APPCONFIG_DEMO
 #define APPCONFIG_XMPPSERVER
@@ -85,31 +85,32 @@ namespace ChatXApp.ViewModels
             if (Navigation == null)
                 throw new NullReferenceException("Navigation");
 
-            // TODO: add user's input validation
-            try
-            {
-                IsBusy = true; // todo: do this automatically with Expression
+            IsBusy = true;
 
 #if APPCONFIG_XMPPSERVER//if App is configured in demo, xmpp is not used, otherwise comment #define
-                DataConfiguration.InitAppUser(NickName, XmppConfiguration.DefaultGuestPassword, XmppConfiguration.DefaultDomain, XmppConfiguration.DefaultPort);
-                SetupXmppEvents();
+            /*Busy flag is reseted in the xmpp OnLoginExecuted event*/
+            DataConfiguration.InitAppUser(NickName, XmppConfiguration.DefaultGuestPassword, XmppConfiguration.DefaultDomain, XmppConfiguration.DefaultPort);
+            SetupXmppEvents();
 
-                DataConfiguration.xmppWrapper.ConnectClient();
-#endif
-
-#if APPCONFIG_DEMO
+            DataConfiguration.xmppWrapper.ConnectClient();
+#elif APPCONFIG_DEMO
+            try
+            {
+                DataConfiguration.InitAppUser(NickName);
                 // simulate a waiting process
-                await Task.Delay(200); 
+                await Task.Delay(200);
 
                 // Go to Chat Room page
                 Navigation.NavigateToItemDetail(ItemsDefinitionsToNavigate.RoomPage);
-#endif
-
             }
             finally
             {
-                //IsBusy = false;
+                IsBusy = false;
             }
+
+#elif (!APPCONFIG_DEMO && !APPCONFIG_XMPPSERVER)
+            throw new Exception("Please define in which mode do you want to run the application 'APPCONFIG_DEMO' or 'APPCONFIG_XMPP'");
+#endif
         }
 
         /// <summary>

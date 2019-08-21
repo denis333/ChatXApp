@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ChatXApp.Droid.XmppUtilities;
 using ChatXApp.Model;
@@ -15,9 +16,12 @@ namespace ChatXApp.Droid.XmppUtilities
 
         public string Domain => _registerGuest.GuestClient.XmppDomain;
 
+        public IAvatarManager ProfileImgManager { get; set; }
+
         private RegisterGuest _registerGuest;
         private ObservableCollection<MsgItem> _msgCollection;
-        private bool isInit = false;
+        private IDictionary<string, User> _usersNameCacheCollection  = new Dictionary<string, User>();
+        private bool _isInit = false;
 
         public XmppWrapper()
         {
@@ -30,17 +34,19 @@ namespace ChatXApp.Droid.XmppUtilities
 
             _registerGuest.MessageReceived = (param) => 
             {
+                AddUserToCache(param.Message.From);
+
                 _msgCollection.Add(
                     new MsgItem(param.Message.Body, 
-                    new User(param.Message.From)));
+                    _usersNameCacheCollection[param.Message.From]));
             };
 
-            isInit = true;
+            _isInit = true;
         }
 
         public void ConnectClient()
         {
-            if (isInit != null)
+            if (_isInit != null)
             {
                 _registerGuest.Connect();
             }
@@ -76,7 +82,6 @@ namespace ChatXApp.Droid.XmppUtilities
                 Type = MessageType.Chat,
                 To = Configs.XmppConfiguration.DefaultDomain,
                 Body = msg.Content,
-                //Data = msg.Who.ImageUrl,
                 XHtml = new Matrix.Xmpp.XHtmlIM.Html
                 {
                     Body = new Matrix.Xmpp.XHtmlIM.Body
@@ -88,24 +93,15 @@ namespace ChatXApp.Droid.XmppUtilities
 
             return msgToSend;
         }
-        private Matrix.Xmpp.Client.Message PrepareMessage(MsgItem msg)
-        {
-            var msgToSend = new Matrix.Xmpp.Client.Message
-            {
-                Type = MessageType.Chat,
-                To = Configs.XmppConfiguration.DefaultDomain,
-                Body = msg.Content,
-                //Data = msg.Who.ImageUrl,
-                XHtml = new Matrix.Xmpp.XHtmlIM.Html
-                {
-                    Body = new Matrix.Xmpp.XHtmlIM.Body
-                    {
-                        InnerXHtml = $"<p>{msg.Content}</p>"
-                    }
-                }
-            };
 
-            return msgToSend;
+        private void AddUserToCache(string name)
+        {
+            if (_usersNameCacheCollection.ContainsKey(name))
+                return;
+
+            var imgUrl = ProfileImgManager?.GetFreeImageUrl();
+
+            _usersNameCacheCollection.Add(name, new User(name, imgUrl));
         }
     }
 }

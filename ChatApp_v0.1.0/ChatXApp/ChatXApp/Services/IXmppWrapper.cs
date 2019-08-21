@@ -17,6 +17,11 @@ namespace ChatXApp.Services
         string Domain { get; }
 
         /// <summary>
+        /// Retrieve Avatar Manager instance
+        /// </summary>
+        IAvatarManager ProfileImgManager { get; set; }
+
+        /// <summary>
         /// Init Xmpp Client
         /// </summary>
         /// <param name="name">user name</param>

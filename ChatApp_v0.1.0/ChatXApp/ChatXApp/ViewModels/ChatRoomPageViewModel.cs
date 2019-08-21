@@ -131,14 +131,15 @@ namespace ChatXApp.ViewModels
 
         public ChatRoomPageViewModel()
         {
+            // TODO: not used in demo mode
+            Configs.DataConfiguration.xmppWrapper?.SetMessageCollection(Messages);
+
             SendMsgCommand = new BaseCommand(
                 SendingAsync,
                 (param) => !(IsBusy || string.IsNullOrEmpty(MessageToSend)));
 
             MsgAppearingCommand = new BaseCommand<MsgItem>(OnMessageAppearing);
             MsgDisappearingCommand = new BaseCommand<MsgItem>(OnMessageDisappearing);
-
-            Configs.DataConfiguration.xmppWrapper.SetMessageCollection(Messages);
 
             // TODO: Used only for test purposes
             // generate a new test message each 5seconds
@@ -149,7 +150,7 @@ namespace ChatXApp.ViewModels
                 var msg = new MsgItem("New message test", mario);
                 HandleNewMessage(msg);
 
-                Configs.DataConfiguration.xmppWrapper.Send(msg);
+                Configs.DataConfiguration.xmppWrapper?.Send(msg);
 
                 return true;
             });

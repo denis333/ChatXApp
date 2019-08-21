@@ -44,7 +44,6 @@ namespace ChatXApp.Configs
                 AvatarMng.PutBack(AppUser.ImageUrl);
 
             AppUser = new User(name, AvatarMng.GetFreeImageUrl());
-            xmppWrapper = DependencyService.Get<IXmppWrapper>();
         }
 
         /// <summary>
@@ -58,6 +57,8 @@ namespace ChatXApp.Configs
                 AvatarMng.PutBack(AppUser.ImageUrl);
 
             AppUser = new User(name, AvatarMng.GetFreeImageUrl());
+
+            xmppWrapper.ProfileImgManager = AvatarMng;
             xmppWrapper = DependencyService.Get<IXmppWrapper>();
             xmppWrapper.InitClient(name, password, domain, port);
         }

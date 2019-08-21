@@ -18,7 +18,6 @@ namespace ChatXApp.View.DataTemplateSelectors
         }
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            // TODO: verify if this check will not affect the perfomance
             if (DataConfiguration.AppUser == null) throw new NullReferenceException("AppUser");
 
             var messageDirection = item as MsgItem;
